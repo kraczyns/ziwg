@@ -18,7 +18,8 @@ namespace TeamOrganizer.Models
     {
         private int taskId;
         private Statuses status;
-        
+        private string description;
+        private int points;
         
         public int GetId()
         {
@@ -37,6 +38,33 @@ namespace TeamOrganizer.Models
         public bool SetStatus(string aStatus)
         {
             return Enum.TryParse(aStatus, out status);
+        }
+
+        public string GetDescription()
+        {
+            return description;
+        }
+
+        public void SetDescription(string aDescription)
+        {
+            description = aDescription;
+        }
+
+        public void SetPoints(int aPoint)
+        {
+            if (aPoint < 1)
+            {
+                throw new ArgumentException("SetPoints: Number of points has to be greater or equale than 1", "aPoint");
+            }
+            else
+            {
+                points = aPoint;
+            }
+        }
+
+        public int GetPoints()
+        {
+            return points;
         }
 
         public TaskModel()
