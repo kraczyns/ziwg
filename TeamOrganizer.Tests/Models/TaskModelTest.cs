@@ -70,5 +70,33 @@ namespace TeamOrganizer.Tests.Models
             }
             Assert.AreEqual(zadanie.GetPoints(),punkty);
         }
+
+        [TestMethod]
+        public void UstawDate()
+        {
+            string data = "13.03.2017 15:37";
+            TaskModel zadanie = new TaskModel();
+            zadanie.SetStartDate(data);
+            Assert.AreEqual(data, zadanie.GetStartDate());
+        }
+
+        [TestMethod]
+        public void StartCzas()
+        {
+            TaskModel zadanie = new TaskModel();
+            string start = "11.05.2018 16:53";
+
+            string czasTrwania = "2w";   // 2 weeks
+            zadanie.SetStartDate(start, czasTrwania);
+            Assert.AreEqual(zadanie.GetEndDate(), "25.05.2018 16:53");   // +2 weeks
+
+            czasTrwania = "8d";   // 8 days
+            zadanie.SetStartDate(start, czasTrwania);
+            Assert.AreEqual(zadanie.GetEndDate(), "19.05.2018 16:53");   // +8 days
+
+            czasTrwania = "20h";   // 20 hours
+            zadanie.SetStartDate(start, czasTrwania);
+            Assert.AreEqual(zadanie.GetEndDate(), "12.05.2018 12:53");   // +20 hours
+        }
     }
 }
