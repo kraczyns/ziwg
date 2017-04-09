@@ -205,6 +205,8 @@
     <Compile Include="Models\EmployeeController.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="Models\TasksDashboardModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
