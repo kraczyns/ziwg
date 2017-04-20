@@ -11,7 +11,15 @@ namespace TeamOrganizer.Controllers
         // GET: Task
         public ActionResult Index()
         {
-            return View();
+
+            try
+            {
+                return RedirectToAction("Dashboard");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Task/Details/5
@@ -23,6 +31,8 @@ namespace TeamOrganizer.Controllers
         // GET: Task/Create
         public ActionResult Create()
         {
+            ViewBag.Title = "Stwórz nowe zadanie";
+            ViewBag.Message = "Tutaj możesz dodać nowe zadanie";
             return View();
         }
 
@@ -84,6 +94,13 @@ namespace TeamOrganizer.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Dashboard()
+        {
+            ViewBag.Message = "Dashboard tutaj będzie :)";
+            ViewBag.Title = "Widok panelu zadań";
+            return View();
         }
     }
 }
