@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TeamOrganizer.Models.Manager>
+
+@{
+    ViewBag.Title = "Panel Manager";
+}
+
+<h2>Panel Managera</h2>
+
+<p>
+    @Html.ActionLink("Dodaj pracownika", "Create")
+</p>
+<p>
+    @Html.ActionLink("Dodaj zadanie", "Create")
+</p>
+
+
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Profil</a></li>
+    <li role="presentation"><a href="#">Zespół</a></li>
+    <li role="presentation"><a href="#">Zadania</a></li>
+</ul>
+
+<div>
+    <p> image </p>
+    <p> dane </p>
+</div>

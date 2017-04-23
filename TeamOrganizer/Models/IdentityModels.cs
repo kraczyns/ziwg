@@ -29,5 +29,9 @@ namespace TeamOrganizer.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TeamOrganizer.Models.Employee> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<TeamOrganizer.Models.Manager> Managers { get; set; }
     }
 }
