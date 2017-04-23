@@ -9,11 +9,11 @@ namespace TeamOrganizer.Models
 {
     public enum Statuses
     {
-        New,
-        ToDo,
-        InProgress,
-        Done,
-        Closed
+        Nowe,
+        DoZrobienia,
+        Wtrakcie,
+        Zrobione,
+        Zamkniete
     };
 
     public enum Jednostki

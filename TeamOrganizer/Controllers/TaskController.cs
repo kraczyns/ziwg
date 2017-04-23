@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TeamOrganizer.Models;
 
 namespace TeamOrganizer.Controllers
 {
@@ -31,7 +32,6 @@ namespace TeamOrganizer.Controllers
         // GET: Task/Create
         public ActionResult Create()
         {
-            ViewBag.Title = "Stwórz nowe zadanie";
             ViewBag.Message = "Tutaj możesz dodać nowe zadanie";
             return View();
         }
@@ -40,16 +40,25 @@ namespace TeamOrganizer.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Random rnd = new Random();
+            TaskModel zadanko = new TaskModel();
+            zadanko.SetPoints(Convert.ToInt32(collection["points"]));
+            zadanko.SetStartDate(Convert.ToString(collection["startdate"]),
+                                 Convert.ToString(collection["duration"])
+                                 );
+            zadanko.SetDescription(Convert.ToString(collection["description"]));
+            zadanko.SetId(rnd.Next());
+            zadanko.SetStatus("Nowe");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            ViewBag.punkty = Convert.ToString(zadanko.GetPoints());
+            ViewBag.koniec = zadanko.GetEndDate();
+            ViewBag.opis = zadanko.GetDescription();
+            ViewBag.status = zadanko.GetStatus();
+            ViewBag.datastart = zadanko.GetStartDate();
+            ViewBag.id = Convert.ToString(zadanko.GetId());
+
+
+            return View();
         }
 
         // GET: Task/Edit/5
