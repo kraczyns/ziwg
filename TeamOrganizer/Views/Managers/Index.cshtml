@@ -4,24 +4,69 @@
     ViewBag.Title = "Panel Manager";
 }
 
+<script>
+
+    //Functon to show divs from the nav menu
+    function ShowDiv(ToShow)
+    {
+        if (ToShow == 'profile') {
+            document.getElementById('profile').style.display = "";
+            document.getElementById('team').style.display = "none";
+            document.getElementById('tasks').style.display = "none";
+        }
+        else if (ToShow == 'team') {
+            document.getElementById('profile').style.display = "none";
+            document.getElementById('team').style.display = "";
+            document.getElementById('tasks').style.display = "none";
+        }
+        else if (ToShow == 'tasks') {
+            document.getElementById('profile').style.display = "none";
+            document.getElementById('team').style.display = "none";
+            document.getElementById('tasks').style.display = "";
+        }
+        $(".nav li").on("click", function () {
+            $(".nav li").removeClass("active");
+            $(this).addClass("active");
+        });
+    }
+
+    function DefaultToShow(ToShow) 
+    {
+        document.getElementById(ToShow).style.display = "";
+        $(".nav li").addClass("active");
+    }
+</script>
+
 <h2>Panel Managera</h2>
-
-<p>
-    @Html.ActionLink("Dodaj pracownika", "Create")
-</p>
-<p>
-    @Html.ActionLink("Dodaj zadanie", "Create")
-</p>
-
-
-
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Profil</a></li>
-    <li role="presentation"><a href="#">Zespół</a></li>
-    <li role="presentation"><a href="#">Zadania</a></li>
-</ul>
-
-<div>
-    <p> image </p>
-    <p> dane </p>
+<div class="ShowDiv('profile');">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#profile" onclick="ShowDiv('profile');">Profil</a></li>
+        <li role="presentation"><a href="#team" onclick="ShowDiv('team');">Zespół</a></li>
+        <li role="presentation"><a href="#tasks" onclick="ShowDiv('tasks');">Zadania</a></li>
+    </ul>
 </div>
+
+
+
+    <div id="profile" style="display: none;">
+        <div class="text-left">
+Zdjęcie
+        </div>
+        <div class="text-right"> Dane </div>
+    </div>
+    <div id="team" style="display: none;">
+        <p>
+            Tu będą wyświetleni pracownicy należący do zespołu tego managera.
+        </p>
+        <p>
+            <input type="button" class="btn btn-info" value="Nowy pracownik" onclick="location.href='@Url.Action("Create", "Employees")'" />
+        </p>
+    </div>
+    <div id="tasks" style="display: none;">
+        <p>
+            Tu będą wyświetlone zadania przypisane do tego managera.
+        </p>
+        <p>
+            <input type="button" class="btn btn-info" value="Nowe zadanie" onclick="location.href='@Url.Action("Create", "Tasks")'" />
+        </p>
+    </div>

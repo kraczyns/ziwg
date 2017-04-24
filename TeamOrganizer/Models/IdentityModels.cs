@@ -20,6 +20,12 @@ namespace TeamOrganizer.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer(new MySqlInitializer());
+        }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
