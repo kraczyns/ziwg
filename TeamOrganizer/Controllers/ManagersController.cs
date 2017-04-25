@@ -17,7 +17,7 @@ namespace TeamOrganizer.Controllers
         // GET: Managers
         public ActionResult Index()
         {
-            return View();
+            return View(db.Managers.ToList());
         }
 
         // GET: Managers/Details/5

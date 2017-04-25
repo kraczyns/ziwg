@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TeamOrganizer.Models;
+using System.Runtime.Remoting.Contexts;
 
 namespace TeamOrganizer.Controllers
 {
@@ -17,6 +18,7 @@ namespace TeamOrganizer.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public AccountController()
         {

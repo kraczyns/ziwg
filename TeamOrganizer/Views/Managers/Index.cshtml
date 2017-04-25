@@ -58,9 +58,24 @@ Zdjęcie
         <p>
             Tu będą wyświetleni pracownicy należący do zespołu tego managera.
         </p>
-        <p>
-            <input type="button" class="btn btn-info" value="Nowy pracownik" onclick="location.href='@Url.Action("Create", "Employees")'" />
-        </p>
+<table>
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+        </tr>
+    }
+</table>
+                    <input type="button" class="btn btn-info" value="Nowy pracownik" onclick="location.href='@Url.Action("Create", "Employees")'" />
+
     </div>
     <div id="tasks" style="display: none;">
         <p>
