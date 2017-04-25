@@ -2,5 +2,22 @@
     ViewBag.Title = "Zadania";
 }
 
-
-<h2>Zadania tutaj będą</h2>
+@model ICollection<TeamOrganizer.Models.TaskModel>
+<table class="table">
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>Opis</td>
+            <td>@Html.DisplayFor(m => item.description)</td>
+        </tr>
+        <tr>
+            <td>Właściciel</td>
+            <td>@Html.DisplayFor(m => item.Owner.Name) </td>
+            <td>@Html.DisplayFor(m => item.Owner.Surname) </td>
+        </tr>
+        <tr>
+            <td>Punkty</td>
+            <td>@Html.DisplayFor(m => item.points) </td>
+        </tr>
+    }
+</table>

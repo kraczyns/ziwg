@@ -1,0 +1,30 @@
+﻿
+@using Microsoft.AspNet.Identity
+<style>
+button{
+    display: flex;
+    margin:0 auto;
+    align-items:center;
+    height: 100px;
+    width: 200px;
+    border-bottom-color: azure;
+}
+</style>
+
+@if (!Request.IsAuthenticated)
+{
+    <div class="center-block w3-container w3-border w3-round-xlarge">
+        <br />
+        <div class="list-group">
+            <button class="button list-group-item list-group-item-action" onclick="location.href='@Url.Action("Login", "Account")'">
+                Zaloguj się
+            </button>
+            <br />
+            <button class="button list-group-item list-group-item-action" onclick="location.href='@Url.Action("Register", "Account")'">
+                Zarejestruj się
+            </button>
+        </div>
+
+    </div>
+
+}

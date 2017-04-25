@@ -3,3 +3,28 @@
 }
 
 
+
+<div class="row">
+    <div class="col-md-6">
+        <section id="login">
+            @Html.Partial("LoginOnly")
+        </section>
+        </div>
+        <div class="col-md-1">
+            <section id="panels">
+                <div class="center-block">
+                    <br />
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action" onclick="location.href='@Url.Action("Index", "Managers")'">
+                            Panel Managera
+                        </button>
+                        <br />
+                        <button class="list-group-item list-group-item-action" onclick="location.href='@Url.Action("Index", "Employees")'">
+                            Panel Pracownika
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+

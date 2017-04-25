@@ -9,18 +9,12 @@ namespace TeamOrganizer.Controllers
 {
     public class TaskController : Controller
     {
+        private EntityContext db = new EntityContext();
+
         // GET: Task
         public ActionResult Index()
         {
-
-            try
-            {
-                return RedirectToAction("Dashboard");
-            }
-            catch
-            {
-                return View();
-            }
+                return View(db.Tasks.ToList());
         }
 
         // GET: Task/Details/5
@@ -38,27 +32,16 @@ namespace TeamOrganizer.Controllers
 
         // POST: Task/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create([Bind(Include = "TaskModelID,TeamID,Employee,description,statuses,startDate,endDate,points")] TaskModel task)
         {
-            Random rnd = new Random();
-            TaskModel zadanko = new TaskModel();
-            zadanko.SetPoints(Convert.ToInt32(collection["points"]));
-            zadanko.SetStartDate(Convert.ToString(collection["startdate"]),
-                                 Convert.ToString(collection["duration"])
-                                 );
-            zadanko.SetDescription(Convert.ToString(collection["description"]));
-            zadanko.SetId(rnd.Next());
-            zadanko.SetStatus("Nowe");
+            if (ModelState.IsValid)
+            {
+                db.Tasks.Add(task);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-            ViewBag.punkty = Convert.ToString(zadanko.GetPoints());
-            ViewBag.koniec = zadanko.GetEndDate();
-            ViewBag.opis = zadanko.GetDescription();
-            ViewBag.status = zadanko.GetStatus();
-            ViewBag.datastart = zadanko.GetStartDate();
-            ViewBag.id = Convert.ToString(zadanko.GetId());
-
-
-            return View();
+            return View(task);
         }
 
         // GET: Task/Edit/5

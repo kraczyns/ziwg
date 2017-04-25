@@ -1,99 +1,98 @@
 ﻿@model IEnumerable<TeamOrganizer.Models.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Panel użytkownika";
 }
 
-<h2>Index</h2>
+<script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-    <h1>Panel użytkonika</h1>
-
-
-<div class="w3-container">
-    <h1>Dane</h1>
-    <p>
-        Imie: asd<br />
-        Naziwsko: asdasd<br />
-        Email: asd@asd.asd<br />
-        Team: asd<br />
-    </p>
-    <hr />
-    Manager: asd<br />
-    <table class="w3-table w3-bordered w3-striped">
-        <tr class="w3-teal">
-            <td colspan="3">
-                <center><b>Team</b></center>
-            </td>
-        </tr>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-        </tr>
-        <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>asd@asd.asd</td>
-        </tr>
-        <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>asd@asd.asd</td>
-        </tr>
-        <tr>
-            <td>Adam</td>
-            <td>Johnson</td>
-            <td>asd@asd.asd</td>
-        </tr>
-    </table>
-
-    <hr />
-    Zebrane punkty: 123<br />
-    <table class="w3-table w3-bordered w3-striped">
-        <tr class="w3-teal">
-            <td colspan="4">
-                <center><b>Zadania</b></center>
-            </td>
-        </tr>
-        <tr>
-            <th>Nazwa</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Points</th>
-        </tr>
-        <tr>
-            <td>Task1</td>
-            <td>12.12.2012</td>
-            <td>06.06.2016</td>
-            <td>666</td>
-        </tr>
-    </table>
-
-    <hr />
-    @foreach (var item in Model)
+    //Functon to show divs from the nav menu
+    function ShowDiv(ToShow)
     {
-        @Html.DisplayFor(m => item.Name)
+        if (ToShow == 'profile') {
+            document.getElementById('profile').style.display = "";
+            document.getElementById('team').style.display = "none";
+            document.getElementById('tasks').style.display = "none";
+        }
+        else if (ToShow == 'team') {
+            document.getElementById('profile').style.display = "none";
+            document.getElementById('team').style.display = "";
+            document.getElementById('tasks').style.display = "none";
+        }
+        else if (ToShow == 'tasks') {
+            document.getElementById('profile').style.display = "none";
+            document.getElementById('team').style.display = "none";
+            document.getElementById('tasks').style.display = "";
+        }
+        $(".nav li").on("click", function () {
+            $(".nav li").removeClass("active");
+            $(this).addClass("active");
+        });
     }
-   
 
-    <table class="w3-table w3-bordered w3-striped">
-        <tr class="w3-teal">
-            <td colspan="4">
-                <center><b>Planowany urlop</b></center>
-            </td>
-        </tr>
-        <tr>
-            <th>Start</th>
-            <th>End</th>
-        </tr>
-        <tr>
-            <td>12.12.2012</td>
-            <td>06.06.2016</td>
-        </tr>
+    function DefaultToShow(ToShow)
+    {
+        document.getElementById(ToShow).style.display = "";
+        $(".nav li").addClass("active");
+    }
+</script>
+
+<h2>Panel Pracownika</h2>
+<div class="ShowDiv('profile');">
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="#profile" onclick="ShowDiv('profile');">Profil</a></li>
+        <li role="presentation"><a href="#team" onclick="ShowDiv('team');">Zespół</a></li>
+        <li role="presentation"><a href="#tasks" onclick="ShowDiv('tasks');">Zadania</a></li>
+    </ul>
+</div>
+
+
+
+<div id="profile" style="display: none;">
+    <div class="col-md-6">
+        <section id="image">
+            <img src="~/images/indeks.png" alt="Sample Photo" />
+        </section>
+    </div>
+    <div class="col-md-2">
+        <section id="data">
+            <table class="table">
+                <tr>
+                    <td>Pracownik:</td>
+                    <td>Adam</td>
+                    <td>Cegiełka</td>
+                </tr>
+                <tr> <td>Manager:</td>
+                    <td>Andrzej</td>
+                    <td>Nowak</td>
+                </tr>
+                <tr>
+                    <td>Punkty: 30</td>
+                </tr>
+                <tr>
+                    <td>Planowany urlop:</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</div>
+<div id="team" style="display: none;">
+    <table class="table">
+        @foreach (var item in Model.Where(i => i.TeamID == 1))
+            {
+            <tr>
+                <td>@Html.DisplayFor(m => item.Name)</td>
+                <td>@Html.DisplayFor(m => item.Surname)</td>
+
+            </tr>
+
+        }
     </table>
 
 </div>
+<div id="tasks" style="display: none;">
+    <p>
+        Tu będą wyświetlone zadania przypisane do tego pracownika.
+    </p>
+</div>
+

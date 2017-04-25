@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
 
 namespace TeamOrganizer.Models
 {
@@ -25,13 +26,26 @@ namespace TeamOrganizer.Models
 
     public class TaskModel
     {
-        private int taskId;
-        private Statuses status;
-        private string description;
-        private int points;
-        private DateTime startDate, endDate;
+        public int TaskModelID { get; set; } 
+        [Display(Name = "Status")]
+        public Statuses status { get; set; }
+        [Display(Name = "Opis")]
+        public string description { get; set; }
+    [Display(Name = "Punkty")]
+        public int points { get; set; }
+[Display(Name = "Początek")]
+        public DateTime startDate { get; set; } 
+        [Display(Name = "Koniec")]
+        public DateTime endDate { get; set; } 
+        [Display(Name = "Zespół")]
+        public int TeamID { get; set; } 
+        [Display(Name = "Właściciel")]
+        public Employee Owner{ get; set; } 
 
-        private DateTime SetDate(string data)
+        public virtual ICollection<Manager> Managers { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+
+    /*    private DateTime SetDate(string data)
         {
             IFormatProvider culture = new CultureInfo("de-DE", true);
             return DateTime.Parse(data, culture, DateTimeStyles.AssumeLocal);
@@ -70,11 +84,11 @@ namespace TeamOrganizer.Models
 
         public int GetId()
         {
-            return taskId;
+            return TaskModelID;
         }
         public void SetId(int aTaskId)
         {
-            taskId = aTaskId;
+            TaskModelID = aTaskId;
         }
 
         public string GetStatus()
@@ -113,10 +127,10 @@ namespace TeamOrganizer.Models
         {
             return points;
         }
-
-        public TaskModel()
+        */
+        /*public TaskModel()
         {
             CultureInfo.CurrentCulture = new CultureInfo("pl-pl", true);
-        }
+        }*/
     }
 }

@@ -12,28 +12,12 @@ namespace TeamOrganizer.Controllers
 {
     public class ManagersController : Controller
     {
-        private ManagerDbContext db = new ManagerDbContext();
-        private EmployeeDbContext em = new EmployeeDbContext();
+        private EntityContext db = new EntityContext();
 
         // GET: Managers
         public ActionResult Index()
         {
-            return View(em.Employees.ToList());
-        }
-
-        // GET: Managers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Manager manager = db.Managers.Find(id);
-            if (manager == null)
-            {
-                return HttpNotFound();
-            }
-            return View(manager);
+            return View(db.Employees.ToList());
         }
 
         // GET: Managers/Create

@@ -21,10 +21,8 @@ namespace TeamOrganizer.Models
 
         public int EmployeeID { get; set; }
 
-    }
+     //   public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Employee> Managers { get; set; }
 
-    public class EmployeeDbContext : DbContext
-    {
-        public DbSet<Employee> Employees { get; set; }
     }
 }

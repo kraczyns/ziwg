@@ -12,27 +12,13 @@ namespace TeamOrganizer.Controllers
 {
     public class EmployeesController : Controller
     {
-        private EmployeeDbContext db = new EmployeeDbContext();
+
+        private EntityContext db = new EntityContext();
 
         // GET: Employees
         public ActionResult Index()
         {
             return View(db.Employees.ToList());
-        }
-
-        // GET: Employees/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
-            return View(employee);
         }
 
         // GET: Employees/Create

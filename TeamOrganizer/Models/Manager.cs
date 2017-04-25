@@ -18,10 +18,10 @@ namespace TeamOrganizer.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
+    //    public virtual ICollection<Task> Tasks { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
+
     }
 
-    public class ManagerDbContext : DbContext
-    {
-        public DbSet<Manager> Managers { get; set; }
-    }
+
 }
