@@ -51,7 +51,7 @@ namespace TeamOrganizer
             };
 
             // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
+       /*     manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = true,
@@ -59,7 +59,7 @@ namespace TeamOrganizer
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
-
+            */
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);

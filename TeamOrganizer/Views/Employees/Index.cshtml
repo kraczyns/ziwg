@@ -74,6 +74,12 @@
     </table>
 
     <hr />
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(m => item.Name)
+    }
+   
+
     <table class="w3-table w3-bordered w3-striped">
         <tr class="w3-teal">
             <td colspan="4">

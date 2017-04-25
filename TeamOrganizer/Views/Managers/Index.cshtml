@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TeamOrganizer.Models.Manager>
+﻿@model IEnumerable<TeamOrganizer.Models.Employee>
 
 @{
     ViewBag.Title = "Panel Manager";
@@ -55,25 +55,20 @@ Zdjęcie
         <div class="text-right"> Dane </div>
     </div>
     <div id="team" style="display: none;">
-        <p>
-            Tu będą wyświetleni pracownicy należący do zespołu tego managera.
-        </p>
-<table>
-    @foreach (var item in Model)
+        <table>
+            @foreach (var item in Model.Where(i => i.TeamID == 1))
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-        </tr>
-    }
-</table>
+                <tr>
+                   <td>@Html.DisplayFor(m => item.Name)</td> 
+                    <td>@Html.DisplayFor(m => item.Surname)</td>
+
+                </tr>
+
+            }
+        </table>
+
+        </p>
+
                     <input type="button" class="btn btn-info" value="Nowy pracownik" onclick="location.href='@Url.Action("Create", "Employees")'" />
 
     </div>

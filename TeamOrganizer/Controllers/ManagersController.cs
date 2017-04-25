@@ -13,11 +13,12 @@ namespace TeamOrganizer.Controllers
     public class ManagersController : Controller
     {
         private ManagerDbContext db = new ManagerDbContext();
+        private EmployeeDbContext em = new EmployeeDbContext();
 
         // GET: Managers
         public ActionResult Index()
         {
-            return View(db.Managers.ToList());
+            return View(em.Employees.ToList());
         }
 
         // GET: Managers/Details/5
